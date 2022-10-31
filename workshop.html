@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learn Fetch & Promises</title>
+  </head>
+  <body>
+    <h1>Open the console</h1>
+    <script>
+
+// fetch("https://pokeapi.co/api/v2/pokemon/pikachu")
+// .then(x=> {
+//   x.json().then(data=>{
+//     console.log(data)
+//   })
+// })
+promise1 = getUser("skittan4")
+    //  .then(user => getRepos(user.repos_url))
+    //  .catch(error => console.log(error));
+
+function getUser(entername){
+
+//}?access_token={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}
+   return fetch(`https://api.github.com/users/${entername}`)
+      .then(respo => respo.json()) 
+    // .then(cont => console.log(cont))
+     
+    //  .catch(error => console.log(error));
+}
+
+function getRepos(gituser){
+fetch( gituser)
+.then(usereturn =>usereturn.json())
+.then(rep => console.log(rep))
+
+}
+
+
+Promise.all([promise1, getUser("oliverjam")]).then((values) => {
+  // for (i=0;i<arr.length;i++){
+  // getRepos(values[i].repos_url)}
+
+  getRepos(values[0].repos_url)
+  getRepos(values[1].repos_url)
+}).catch(error => console.log(error));
+
+
+    </script>
+  </body>
+</html>
